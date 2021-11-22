@@ -12,7 +12,12 @@ P = PC
 I = i
 C = op1
 D = op2
-R = Delay Timer
+G = Dummy 1
+H = Dummy 2
+E = Dummy 3
+F = Dummy 4
+Q = Delay Timer
+R = Return
 S = Sound timer 
 
 Opcodes currently implemented:
@@ -25,5 +30,7 @@ Opcodes currently implemented:
 3XNN: Skip if VX = NN
 4XNN: Skip if VX != NN
 5XY0: Skip if VX = VY.
+CXKK: VX = rand AND kk
+DXYN: Draw Sprite at VX, VY
 
 Programmed by Oxiti8 2021.
