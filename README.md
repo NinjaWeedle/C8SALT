@@ -8,3 +8,7 @@ Currently implemented ops:
 1NNN
 2NNN
 3XNN
+4XNN
+5XY0
+CXKK
+DXYN
