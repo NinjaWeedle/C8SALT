@@ -30,6 +30,7 @@ Opcodes currently implemented:
 3XNN: Skip if VX = NN
 4XNN: Skip if VX != NN
 5XY0: Skip if VX = VY.
+6XNN
 CXKK: VX = rand AND kk
 DXYN: Draw Sprite at VX, VY
 
