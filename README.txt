@@ -31,6 +31,11 @@ Opcodes currently implemented:
 4XNN: Skip if VX != NN
 5XY0: Skip if VX = VY.
 6XNN
+7XY0
+8XY0
+9XY0
+ANNN: Jump
+BNNN: Jump VX
 CXKK: VX = rand AND kk
 DXYN: Draw Sprite at VX, VY
 
