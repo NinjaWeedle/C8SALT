@@ -33,10 +33,15 @@ Opcodes currently implemented:
 6XNN
 7XY0
 8XY0
+8XY4: ADD VX,VY
+8XY5: SUB VX,VY
+8XY7: SUBN VX,VY
 9XY0
 ANNN: Jump
 BNNN: Jump VX
 CXKK: VX = rand AND kk
 DXYN: Draw Sprite at VX, VY
+FX07
+FX15
 
 Programmed by Oxiti8 2021.
