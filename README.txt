@@ -1,42 +1,80 @@
-C8SALT - A CHIP-8 interpreter written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
+Oxiti8's                 _
+CCC  8 8  SSS  AAA      T T 
+C    888   S   AAA  LLL TTT
+CCC  8 8  SSS  A        T_T
+
+C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
 By Oxiti8
 
-Installation:
-1. Send C8SALT.8xp and C8CPU.8xp to your calculator.
-2. Select an option from the menu:
+C8SALT is the first ever CHIP-8 emulator written in pure TI-BASIC. Play all your favorite CHIP-8 games at a blistering 0.1 FPS!
+5 games are included, as well as a ROM converter allowing you to play the hundreds of CHIP-8 games out there.
+
+*TABLE OF CONTENTS*
+
+ I. INSTALLATION
+ II. ROM CONVERSION INSTRUCTIONS
+ III. CONTROLS
+ IV. TECHNICAL DETAILS
+ V. VARIABLE GUIDE
+ VI. CREDITS
+
+
+I. INSTALLATION:
+ 1. Send C8SALT.8xp, FONT.8xl, and C8CPU.8xp to your calculator.
+ 2. Select an option from the menu:
 	1 - NONE: This launches C8SALT with no ROM. Useless.
-	2 - CORAX89: This launches Corax89's test ROM.
-	3 - LOAD FROM LROM: Loads the rom data stored in ROM. For info on converting CHIP-8 software for use with C8SALT, see the instructions at the bottom of this README.
+	2 - LOAD FROM LROM: Loads the rom data stored in ROM. For info on converting CHIP-8 software for use with C8SALT, see ROM CONVERSION INSTRUCTIONS.
+	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off). It is recommended that CSE/CE users leave HLE text rendering disabled.
 
 WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
 This is because C8SALT uses the Real( command, which XLib uses.
 
 You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder,
-or if you want to import your own:
+or if you want to import your own, refer to Section 2- ROM CONVERSION INSTRUCTIONS
 
-ROM CONVERSION INSTRUCTIONS:
 
-1. Put your CHIP-8 program in the "Programs" folder.
-2. Name your chip-8 program "program.ch8"
-3. Run convert.py. it should create a file named "ROM.txt"
+II. ROM CONVERSION INSTRUCTIONS:
 
-For the following steps, you have two options based on the tool you want to use:
+ 1. Put your CHIP-8 program in the "Programs" folder, or in the same place as convert.py.
+ 2. Rename your CHIP-8 program "program.ch8"
+ 3. Run convert.py. It should create a file named "ROM.txt".
 
-For TI-CONNECT USERS (Recommended):
-4. Open TI-Connect, and open "TI DataEditor".
-5. Go to File > Import... and import your "ROM.txt" file.
-6. Click File -> Save As... and save the list as "ROM.8xl".
-7. Send the ROM.8xl file to your calculator.
+ For the following steps, you have two options based on the tool you want to use:
 
-FOR SOURCECODER 3 USERS:
-4. Convert the out.txt file to the comma delimted .csv format. This can be done thru Microsoft Excel or whatever spreadsheet editor you have availiable.
-5. Go to https://www.cemetech.net/sc/ and open your ROM.csv file. It should show up in SourceCoder 3 as "|LROM".
-6. Rename the file from "|LROM" to "ROM".
-7. Click "Export File". It should export as "ROM.8xl".
-8. Send ROM.8xl to your calculator.
+ FOR TI-CONNECT USERS (Recommended):
+  4. Open TI-Connect, and open "TI DataEditor".
+  5. Go to File > Import... and import your "ROM.txt" file.
+  6. Click File -> Save As... and save the list as "ROM.8xl".
+  7. Send the ROM.8xl file to your calculator.
 
-Now you can run C8SALT, and you should now be able to play your game!
+ FOR SOURCECODER 3 USERS:
+  4. Convert the out.txt file to the comma delimited .csv format. This can be done thru Microsoft Excel or whatever spreadsheet editor you have available.
+  5. Go to https://www.cemetech.net/sc/ and open your ROM.csv file. It should show up in SourceCoder 3 as "|LROM".
+  6. Rename the file from "|LROM" to "ROM".
+  7. Click "Export File". It should export as "ROM.8xl".
+  8. Send ROM.8xl to your calculator.
 
+ Now you can run C8SALT, and you should now be able to play your game!
+
+ (P.S: You can also create custom fonts this way by saving the hex data for them in a .ch8 file, then following the program conversion process- just rename the "ROM.8xl" to "FONT.8xl" when finished)
+
+
+III. CONTROLS:
+
+
+IV. TECHNICAL INFO
+
+ All 30 ops from the original CHIP-8 spec are planned to be supported, as well as select SuperCHIP ops.
+
+ - On the limited SuperCHIP support:
+
+ You can use 00FD (EXIT), 00FE (LORES), and eventually FX75/FX85 just fine.
+ SuperCHIP Hires mode (00FF) can also be used, but you're limited to a 94x62 resolution when using it rather than the full 128x64.
+
+DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported at this time.
+
+
+V. VARIABLE GUIDE
 
 P = PC
 I = i
@@ -51,16 +89,11 @@ R = Return
 S = Sound timer 
 L = Screen height
 W = Screen width
+Theta = HLE Font Toggle
+Recursive n = temp var.
 
-All 30 ops from the original CHIP-8 spec are planned to be supported,
-as well as some limited SuperCHIP support.
 
- - On the limited SuperCHIP support:
+VI. CREDITS
 
-You can use 00FD (EXIT), 00FE (LORES), and eventually FX75/FX85 just fine.
-Hires mode (00FF) can also be used, but you're limited to a 96x64 resolution when using it rather than the full 128x64.
-
-DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported at this time.
-    
 Programmed by Oxiti8 (C)2021.
 Rom importer created by A-KouZ1.
