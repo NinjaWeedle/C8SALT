@@ -65,6 +65,7 @@ III. CONTROLS (Note- Due to emulation speed you may need to mash the keys for th
 
  MODE - Quit C8SALT, clean up lists used during emulation, and display debug info.
  
+Controls are unique in that the keys used are the GetKey value modulo 16
 
 IV. TECHNICAL INFO
 
