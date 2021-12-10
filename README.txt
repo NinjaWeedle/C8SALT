@@ -3,8 +3,10 @@ CCC  8 8  SSS  AAA      T T
 C    888   S   AAA  LLL TTT
 CCC  8 8  SSS  A        T_T
 
-C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
+C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.- 
 By Oxiti8
+
+ALPHA VERSION - MISSING 8XY1, 8XY2, 8XY3, FX33, FX55
 
 C8SALT is the first ever CHIP-8 emulator written in pure TI-BASIC. Play all your favorite CHIP-8 games at a blistering 0.1 FPS!
 5 games are included, as well as a ROM converter allowing you to play the hundreds of CHIP-8 games out there.
@@ -22,15 +24,15 @@ C8SALT is the first ever CHIP-8 emulator written in pure TI-BASIC. Play all your
 I. INSTALLATION:
  1. Send C8SALT.8xp, FONT.8xl, and C8CPU.8xp to your calculator.
  2. Select an option from the menu:
-	1 - NONE: This launches C8SALT with no ROM. Useless.
+	1 - RESUME: If you pressed ON to stop C8SALT mid-execution and you haven't cleared the graph screen, you can select this option to pick up where you left off.
 	2 - LOAD FROM LROM: Loads the rom data stored in ROM. For info on converting CHIP-8 software for use with C8SALT, see ROM CONVERSION INSTRUCTIONS.
 	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off). It is recommended that CSE/CE users leave HLE text rendering disabled.
+	4 - EXIT: Exits C8SALT.
 
 WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
 This is because C8SALT uses the Real( command, which XLib uses.
 
-You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder,
-or if you want to import your own, refer to Section 2- ROM CONVERSION INSTRUCTIONS
+You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder, or if you want to import your own, refer to Section II.
 
 
 II. ROM CONVERSION INSTRUCTIONS:
@@ -48,7 +50,7 @@ II. ROM CONVERSION INSTRUCTIONS:
   7. Send the ROM.8xl file to your calculator.
 
  FOR SOURCECODER 3 USERS:
-  4. Convert the out.txt file to the comma delimited .csv format. This can be done thru Microsoft Excel or whatever spreadsheet editor you have available.
+  4. Convert the ROM.txt file to the comma delimited .csv format. This can be done thru Microsoft Excel or whatever spreadsheet editor you have available.
   5. Go to https://www.cemetech.net/sc/ and open your ROM.csv file. It should show up in SourceCoder 3 as "|LROM".
   6. Rename the file from "|LROM" to "ROM".
   7. Click "Export File". It should export as "ROM.8xl".
@@ -56,36 +58,41 @@ II. ROM CONVERSION INSTRUCTIONS:
 
  Now you can run C8SALT, and you should now be able to play your game!
 
- (P.S: You can also create custom fonts this way by saving the hex data for them in a .ch8 file, then following the program conversion process- just rename the "ROM.8xl" to "FONT.8xl" when finished)
+ (You can also create custom fonts this way by saving the hex data for them in a .ch8 file, then following the program conversion process- just rename the "ROM.8xl" to "FONT.8xl" when finished)
 
 
-III. CONTROLS:
+III. CONTROLS (Note- Due to emulation speed you may need to mash the keys for them to register.):
 
+ MODE - Quit C8SALT, clean up lists used during emulation, and display debug info.
+ 
 
 IV. TECHNICAL INFO
 
  All 30 ops from the original CHIP-8 spec are planned to be supported, as well as select SuperCHIP ops.
+ Obviously, there's no audio support.
 
  - On the limited SuperCHIP support:
 
- You can use 00FD (EXIT), 00FE (LORES), and eventually FX75/FX85 just fine.
+ You can use 00FD (EXIT), 00FE (LORES), and Fx30 (BIGFONT VX) just fine.
  SuperCHIP Hires mode (00FF) can also be used, but you're limited to a 94x62 resolution when using it rather than the full 128x64.
 
-DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported at this time.
+ DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported at this time.
 
 
 V. VARIABLE GUIDE
 
-P = PC
-I = i
-C = op1
-D = op2
+A = temp
+B = temp
+P = Program Counter (PC)
+I = instruction pointer (i)
+C = op1 (Byte 1 of the opcode) 
+D = op2 (Byte 2 of the opcode)
 G = Dummy 1
 H = Dummy 2
 E = Dummy 3
 F = Dummy 4
 Q = Delay Timer
-R = Return
+R = Return value
 S = Sound timer 
 L = Screen height
 W = Screen width
