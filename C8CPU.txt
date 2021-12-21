@@ -1,0 +1,255 @@
+If not(C
+Then
+	If D=238
+	Then
+		|LSTK(dim(|LSTK->P
+		dim(|LSTK)-1->dim(|LSTK
+	End
+	If D=253
+	Stop
+	If D=254
+	Then
+		32->L
+		64->W
+		ClrDraw
+	End
+	If D=255
+	Then
+		62->L
+		92->W
+		ClrDraw
+	End
+	If D=224
+	ClrDraw
+	Return
+End
+If C<32
+Then
+	D+(4096fPart(C/16->P
+	Return
+End
+If C<48
+Then
+	1+dim(|LSTK->dim(|LSTK
+	P->|LSTK(dim(|LSTK
+	D+(256(16fPart(C/16->P
+	Return
+End
+If C<64
+Then
+	P+2(D=|LREG(1+16fPart(C/16->P
+	Return
+End
+If C<80
+Then
+	P+2(D!=|LREG(1+16fPart(C/16->P
+	Return
+End
+If C<96
+Then
+	P+2(|LREG(1+16fPart(C/16))=|LREG(1+int(D/16->P
+	Return
+End
+If C<112
+Then
+	D->|LREG(1+16fPart(C/16
+	Return
+End
+If C<128
+Then
+	D+|LREG(1+16fPart(C/16
+	256fPart(Ans/256->|LREG(1+16fPart(C/16
+	Return
+End
+If C<144
+Then
+	16fPart(D/16->A
+	If not(A
+	|LREG(1+int(D/16->|LREG(1+16fPart(C/16
+	If A=1
+	
+	If A=4
+	Then
+		|LREG(1+16fPart(C/16))+|LREG(1+int(D/16->B
+		B>255->|LREG(16
+		256fPart(B/256->|LREG(1+16fPart(C/16
+	End
+	If A=5
+	Then
+		|LREG(1+16fPart(C/16))-|LREG(1+int(D/16->B
+		not(B<0->E
+		If not(E
+		B+256->B
+		256fPart(B/256->|LREG(1+16fPart(C/16
+		E->|LREG(16
+	End
+	If A=6
+	Then
+		2fPart(|LREG(1+16fPart(C/16))/2->|LREG(16
+		int(|LREG(1+int(D/16))/2->|LREG(1+16fPart(C/16
+		Return
+	End
+	If A=7
+	Then
+		|LREG(1+int(D/16))-|LREG(1+16fPart(C/16->B
+		not(B<0->E
+		If not(E
+		B+256->B
+		256fPart(B/256->|LREG(1+16fPart(C/16
+		E->|LREG(16
+		Return
+	End
+	If A=14
+	Then
+		256fPart(2|LREG(1+(int(D/16)))/256->|LREG(1+16fPart(C/16
+		|LREG(1+16fPart(C/16
+		128<=Ans->|LREG(16
+	End
+	Return
+End
+If C<160
+Then
+	P+2(|LREG(1+(16fPart(C/16)))!=|LREG(1+(int(D/16->P
+	Return
+End
+If C<176
+Then
+	D+(4096fPart(C/16->I
+	Return
+End
+If C<192
+Then
+	D+4096fPart(C/16)+|LREG(1->P
+	Return
+End
+If C<208
+Then
+	randInt(0,255->R
+	R->|LREG(1+16fPart(C/16
+	Return
+End
+If C<224
+Then
+	0->[recursiven]
+	|LREG(1+(int(D/16->H
+	If I<420 and not(theta
+	Then
+		If I<16
+		Text(1+LfPart(H/L),1+WfPart(|LREG(1+16fPart(C/16))/W),sub("0123456789ABCDEF",I+1,1
+	Else
+		I->E
+		For(O,1,16fPart(D/16
+			|LREG(1+(16fPart(C/16->G
+			|LRAM(1+int(E/8->A
+			8fPart(E/8->B
+			If B=7
+			iPart(1000fPart(|E8imag(A->R
+			If B=6
+			iPart(1000fPart(|E5imag(A->R
+			If B=5
+			1000fPart(.001iPart(|E5imag(A->R
+			If B=4
+			iPart(1000imag(A->R
+			If B=3
+			iPart(1000fPart(|E8real(A->R
+			If B=2
+			iPart(1000fPart(|E5real(A->R
+			If B=1
+			1000fPart(.001iPart(|E5real(A->R
+			If not(B
+			iPart(1000real(A->R
+			For(N,1,8
+				If R>127
+				Then
+					If pxl-Test(1+(LfPart(H/L)),1+(WfPart(G/W
+					1->[recursiven]
+					Pxl-Change(1+(LfPart(H/L)),1+(WfPart(G/W
+				End
+				256fPart((2R)/256->R
+				G+1->G
+			End
+			H+1->H
+			E+1->E
+		End
+	End
+	[recursiven]->|LREG(16
+	Return
+End
+If C<240
+Then
+	16fPart(getKey/16->K
+	If D=158
+	Then
+		P+2(K=|LREG(1+16fPart(C/16->P
+	Else
+		P+2(K!=|LREG(1+16fPart(C/16->P
+	End
+	Return
+End
+If D=7
+Then
+	Q->|LRAM(1+16fPart(C/16
+	Return
+End
+If D=10
+Then
+	Repeat K
+		getKey->K
+	End
+	16fPart(K/16->|LREG(1+16fPart(C/16
+	Return
+End
+If D=21
+Then
+	|LREG(1+16fPart(C/16->Q
+	Return
+End
+If D=24
+Then
+	|LREG(1+16fPart(C/16->S
+	Return
+End
+If D=41
+Then
+	(5^theta)|LREG(1+16fPart(C/16->I
+	Return
+End
+If D=48
+Then
+	80+(10^theta|LREG(1+16fPart(C/16->I
+	Return
+End
+If D=51
+Then
+	
+	Return
+End
+If D=85
+Then
+	
+End
+If D=101
+Then
+	For([recursiven],1,16fPart(C/16
+		|LRAM(1+int(I/8->A
+		8fPart(I/8->B
+		If B=7
+		iPart(1000fPart(|E8imag(A->R
+		If B=6
+		iPart(1000fPart(|E5imag(A->R
+		If B=5
+		1000fPart(.001iPart(|E5imag(A->R
+		If B=4
+		iPart(1000imag(A->R
+		If B=3
+		iPart(1000fPart(|E8real(A->R
+		If B=2
+		iPart(1000fPart(|E5real(A->R
+		If B=1
+		1000fPart(.001iPart(|E5real(A->R
+		If not(B
+		iPart(1000real(A->R
+		R->|LRAM([recursiven]
+		I+1->I
+	End
+	Return

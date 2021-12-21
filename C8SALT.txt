@@ -1,0 +1,81 @@
+:"CHIP8 EMU
+DelVar thetaAxesOff
+ClrHome
+Lbl A
+Menu("C8SALT BY OXITI8","RESUME",1,"LOAD FROM |LROM",2,"SETTINGS",3,"EXIT",4
+Lbl 4
+Stop
+Lbl 3
+Prompt theta
+Goto A
+Lbl 2
+Output(4,5,"LOADING...
+64->W
+8W->P
+32->L
+ClrList |LREG
+ClrList |LSTK
+ClrList |LRAM
+P->dim(|LRAM
+If theta
+Then
+	SetUpEditor |LFONT
+	For([recursiven],1,dim(|LFONT),2
+		|LFONT([recursiven])+([i]|LFONT([recursiven]+1->|LRAM([recursiven]
+	End
+End
+SetUpEditor |LROM
+If 2fPart(dim(|LROM)/2
+1+dim(|LROM->dim(|LROM
+64->B
+For([recursiven],1,dim(|LROM),2
+	B+1->B
+	|LROM([recursiven])+([i]|LROM([recursiven]+1->|LRAM(B
+End
+Archive |LROM
+DelVar IDelVar BDelVar SDelVar QOutput(5,2,"ALL SYSTEMS GO
+1->dim(|LSTK
+16->dim(|LREG
+ClrDraw
+Lbl 1
+Text(~1,56,60,"C8SALT
+Repeat getKey=22
+	|LRAM(1+int(P/8->A
+	8fPart(P/8->B
+	If B>3
+	Then
+		If B=6
+		Then
+			iPart(1000fPart(10|E5imag(A->C
+			iPart(1000fPart(10|E8imag(A->D
+		Else
+			iPart(1000imag(A->C
+			1000fPart(.001iPart(10|E5imag(A->D
+		End
+	Else
+		If B
+		Then
+			iPart(1000fPart(10|E5real(A->C
+			iPart(1000fPart(10|E8real(A->D
+		Else
+			iPart(1000real(A->C
+			1000fPart(.001iPart(10|E5real(A->D
+		End
+	End
+	P+2->P
+	prgmC8CPU
+	If Q
+	Q-1->Q
+	If S
+	S-1->S
+End
+DelVar |LRAM
+ClrHome
+Disp "PC:
+Output(1,5,P
+Disp "I:
+Output(2,4,I
+Disp "DT:
+Output(3,5,Q
+Disp "ST:
+Output(4,5,S
