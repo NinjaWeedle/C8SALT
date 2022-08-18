@@ -1,16 +1,23 @@
 :"CHIP8 EMU
 DelVar thetaAxesOff
+If 11>real(11
+Then
+	Disp "DISABLE XLIB
+	Stop
+End
 ClrHome
 Lbl A
 Menu("C8SALT BY OXITI8","RESUME",1,"LOAD FROM |LROM",2,"SETTINGS",3,"EXIT",4
 Lbl 4
 Stop
 Lbl 3
-Prompt theta
+Input "HLE FONT?",theta
 Goto A
 Lbl 2
+ClrHome
 Output(4,5,"LOADING...
 64->W
+W->B
 8W->P
 32->L
 ClrList |LREG
@@ -27,7 +34,6 @@ End
 SetUpEditor |LROM
 If 2fPart(dim(|LROM)/2
 1+dim(|LROM->dim(|LROM
-64->B
 For([recursiven],1,dim(|LROM),2
 	B+1->B
 	|LROM([recursiven])+([i]|LROM([recursiven]+1->|LRAM(B
@@ -38,7 +44,8 @@ DelVar IDelVar BDelVar SDelVar QOutput(5,2,"ALL SYSTEMS GO
 16->dim(|LREG
 ClrDraw
 Lbl 1
-Text(~1,56,60,"C8SALT
+Xmin+|E2DeltaX>Xmax
+Text(~1,56Ans,60Ans,"C8SALT
 Repeat getKey=22
 	|LRAM(1+int(P/8->A
 	8fPart(P/8->B
@@ -79,3 +86,7 @@ Disp "DT:
 Output(3,5,Q
 Disp "ST:
 Output(4,5,S
+Disp "OP1:
+Output(5,6,C
+Disp "OP2:
+Output(6,6,D
