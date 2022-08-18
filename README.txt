@@ -3,10 +3,10 @@ CCC  8 8  SSS  AAA      T T
 C    888   S   AAA  LLL TTT
 CCC  8 8  SSS  A        T_T
 
-C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.- 
+C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
 By Oxiti8
 
-BETA VERSION
+ALPHA VERSION V0.8
 
 C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games at a blistering 0.1 FPS!
 5 games are included with C8SALT, along with a ROM converter written in Python 3 allowing you to play any CHIP-8 game with C8SALT.
@@ -20,7 +20,7 @@ You can even import your own custom fonts!
  IV. TECHNICAL DETAILS
  V. VARIABLE GUIDE
  VI. CREDITS
-
+ VII. LICENSE
 
 I. INSTALLATION:
  1. Send C8SALT.8xp, FONT.8xl, and C8CPU.8xp to your calculator.
@@ -31,7 +31,7 @@ I. INSTALLATION:
 	4 - EXIT: Exits C8SALT.
 
 WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
-This is because C8SALT uses the Real( command, which XLib uses.
+This is because C8SALT uses the Real( command as part of its memory decompression routine, a command which XLib uses for its functions. 
 
 You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder, or if you want to import your own, refer to Section II.
 
@@ -78,7 +78,7 @@ IV. TECHNICAL INFO
  You can use 00FD (EXIT), 00FE (LORES), and Fx30 (BIGFONT VX) just fine.
  SuperCHIP Hires mode (00FF) can also be used, but you're limited to a 94x62 resolution when using it rather than the full 128x64.
 
- DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported at this time.
+ DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported.
 
 
 V. VARIABLE GUIDE
@@ -89,8 +89,8 @@ P = Program Counter (PC)
 I = instruction pointer (i)
 C = op1 (Byte 1 of the opcode) 
 D = op2 (Byte 2 of the opcode)
-G = Dummy 1
-H = Dummy 2
+G = Dummy 1 (Sometimes used as a temp for Vx)
+H = Dummy 2 (Sometimes used as a temp for Vy)
 E = Dummy 3
 F = Dummy 4
 Q = Delay Timer
@@ -104,5 +104,17 @@ Recursive n = temp var.
 
 VI. CREDITS
 
-Programmed by Oxiti8 (C)2021.
+Programmed by Oxiti8.
 Rom importer created by A-KouZ1.
+
+Special thanks to Mr Womp Womp, kg583, and calc84maniac, and fghsgh for help with memory compression and optimization. C8SALT wouldn't exist without them.
+
+VII. LICENSE
+
+Copyright 2021-2022 Oxiti8
+
+Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the "Software"), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.
