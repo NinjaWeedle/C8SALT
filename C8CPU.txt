@@ -75,7 +75,6 @@ Then
 			round(e^(Bln(2)),0->E
 			F+E(0<((2fPart(int(G/E)/2))+(2fPart(.5int(H/E->F
 		End
-		Pause F
 		F->|LREG(1+16fPart(C/16
 		Return
 	End
@@ -131,9 +130,8 @@ Then
 	End
 	If A=14
 	Then
+		128<=|LREG(1+16fPart(C/16->|LREG(16
 		256fPart(2H/256->|LREG(1+16fPart(C/16
-		|LREG(1+16fPart(C/16
-		128<=Ans->|LREG(16
 	End
 	Return
 End
