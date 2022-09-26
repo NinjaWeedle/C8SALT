@@ -6,7 +6,7 @@ CCC  8 8  SSS  A        T_T
 C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
 By Oxiti8
 
-ALPHA VERSION V0.8.1
+BETA VERSION V0.9
 
 C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games at a blistering 0.1 FPS!
 5 games are included with C8SALT, along with a ROM converter written in Python 3 allowing you to play any CHIP-8 game with C8SALT.
@@ -27,7 +27,7 @@ I. INSTALLATION:
  2. Select an option from the menu:
 	1 - RESUME: If you pressed ON to stop C8SALT mid-execution and you haven't cleared the graph screen, you can select this option to pick up where you left off.
 	2 - LOAD FROM LROM: Loads the rom data stored in ROM. For info on converting CHIP-8 software for use with C8SALT, see ROM CONVERSION INSTRUCTIONS.
-	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off). It is recommended that CSE/CE users leave HLE text rendering disabled.
+	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off) as well as decide the behavior of FX55/65 (0 = Do not increment I (SCHIP style), 1 = Increment I (VIP/Octo style))
 	4 - EXIT: Exits C8SALT.
 
 WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
@@ -70,7 +70,7 @@ Controls are unique in that the keys used are the GetKey value modulo 16.
 
 IV. TECHNICAL INFO
 
- All 30 ops from the original CHIP-8 spec are planned to be supported, as well as select SuperCHIP ops.
+ All 30 ops from the original CHIP-8 spec are supported, as well as select SuperCHIP ops.
  Obviously, there's no audio support.
 
  - On the limited SuperCHIP support:
@@ -78,7 +78,7 @@ IV. TECHNICAL INFO
  You can use 00FD (EXIT), 00FE (LORES), and Fx30 (BIGFONT VX) just fine.
  SuperCHIP Hires mode (00FF) can also be used, but you're limited to a 94x62 resolution when using it rather than the full 128x64.
 
- DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported.
+DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported.
 
 
 V. VARIABLE GUIDE
@@ -93,14 +93,16 @@ G = Dummy 1 (Sometimes used as a temp for Vx)
 H = Dummy 2 (Sometimes used as a temp for Vy)
 E = Dummy 3
 F = Dummy 4
+J = Increment I during FX55/65 flag
+K = getkey
 Q = Delay Timer
 R = Return value
 S = Sound timer 
 L = Screen height
 W = Screen width
+Z = Temp in Fx55/65
 Theta = HLE Font Toggle
 Recursive n = temp var.
-
 
 VI. CREDITS
 

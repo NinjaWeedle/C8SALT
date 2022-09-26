@@ -25,7 +25,7 @@ Then
 End
 If C<32
 Then
-	D+(4096fPart(C/16->P
+	D+4096fPart(C/16->P
 	Return
 End
 If C<48
@@ -73,7 +73,7 @@ Then
 	Then
 		For(B,0,8
 			round(e^(Bln(2)),0->E
-			F+E(0<((2fPart(int(G/E)/2))+(2fPart(.5int(H/E->F
+			F+E(0<((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
 		End
 		F->|LREG(1+16fPart(C/16
 		Return
@@ -82,7 +82,7 @@ Then
 	Then
 		For(B,0,8
 			round(e^(Bln(2)),0->E
-			F+E(1<((2fPart(int(G/E)/2))+(2fPart(.5int(H/E->F
+			F+E(1<((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
 		End
 		F->|LREG(1+16fPart(C/16
 		Return
@@ -91,7 +91,7 @@ Then
 	Then
 		For(B,0,8
 			round(e^(Bln(2)),0->E
-			F+E(2fPart(.5((2fPart(int(G/E)/2))+(2fPart(.5int(H/E->F
+			F+E(2fPart(.5((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
 		End
 		F->|LREG(1+16fPart(C/16
 		Return
@@ -249,35 +249,85 @@ Then
 End
 If D=51
 Then
-	
-	Return
-End
-If D=85
-Then
-	
-End
-If D=101
-Then
-	For([recursiven],1,16fPart(C/16
-		int(I/8->A
-		8fPart(I/8->B
-		If B=7
-		iPart(1000fPart(10|E8imag(|LRAM(A+1
+	For([recursiven],0,2
+		1+int(.125(I+[recursiven]->A
+		8fPart(.125(I+[recursiven]->B
+		iPart(1000fPart(10|E8imag(|LRAM(A
 		If B=6
-		iPart(1000fPart(10|E5imag(|LRAM(A+1
+		iPart(1000fPart(10|E5imag(|LRAM(A
 		If B=5
-		1000fPart(.001iPart(10|E5imag(|LRAM(A+1
+		1000fPart(.001iPart(10|E5imag(|LRAM(A
 		If B=4
-		iPart(1000imag(|LRAM(A+1
+		iPart(1000imag(|LRAM(A
 		If B=3
-		iPart(1000fPart(10|E8real(|LRAM(A+1
+		iPart(1000fPart(10|E8real(|LRAM(A
 		If B=2
-		iPart(1000fPart(10|E5real(|LRAM(A+1
+		iPart(1000fPart(10|E5real(|LRAM(A
 		If B=1
-		1000fPart(.001iPart(10|E5real(|LRAM(A+1
+		1000fPart(.001iPart(10|E5real(|LRAM(A
 		If not(B
-		iPart(1000real(|LRAM(A+1
-		Ans->|LRAM([recursiven]
-		I+1->I
+		iPart(1000real(|LRAM(A
+		Ans->Z
+		4fPart(.25(B->E
+		10fPart(.1|LREG(1+16fPart(C/16
+		If [recursiven]=1
+		10fPart(.1int(.1|LREG(1+16fPart(C/16
+		If not([recursiven]
+		int(.01|LREG(1+16fPart(C/16
+		If not(E
+		.001Ans
+		If E=1
+		.000001Ans
+		If E=2
+		.000000001Ans
+		If E=3
+		.000000000001Ans
+		If B>3
+		[i]Ans
+		Ans-Z+|LRAM(A->|LRAM(A
 	End
 	Return
+End
+If D<=101
+Then
+	For([recursiven],0,16fPart(C/16
+		1+int(.125(I+[recursiven]->A
+		8fPart(.125(I+[recursiven]->B
+		iPart(1000fPart(10|E8imag(|LRAM(A
+		If B=6
+		iPart(1000fPart(10|E5imag(|LRAM(A
+		If B=5
+		1000fPart(.001iPart(10|E5imag(|LRAM(A
+		If B=4
+		iPart(1000imag(|LRAM(A
+		If B=3
+		iPart(1000fPart(10|E8real(|LRAM(A
+		If B=2
+		iPart(1000fPart(10|E5real(|LRAM(A
+		If B=1
+		1000fPart(.001iPart(10|E5real(|LRAM(A
+		If not(B
+		iPart(1000real(|LRAM(A
+		Ans->Z
+		If D=85
+		Then
+			4fPart(.25(B->E
+			|LREG([recursiven]+1
+			If not(E
+			.001Ans
+			If E=1
+			.000001Ans
+			If E=2
+			.000000001Ans
+			If E=3
+			.000000000001Ans
+			If B>3
+			[i]Ans
+			Ans-Z+|LRAM(A->|LRAM(A
+		End
+		If D=101
+		Z->|LREG([recursiven]+1
+	End
+	If J
+	I+[recursiven]+1->I
+End
