@@ -4,20 +4,28 @@ Then
 	Then
 		|LSTK(dim(|LSTK->P
 		dim(|LSTK)-1->dim(|LSTK
+		Return
 	End
 	If D=253
 	Stop
 	If D=254
 	Then
+		ClrDraw
 		32->L
 		64->W
-		ClrDraw
+		Return
 	End
 	If D=255
 	Then
-		62->L
-		92->W
 		ClrDraw
+		If not(Xmin+|E2DeltaX>Xmax
+		Then
+			64->L
+			128->W
+		Else
+			62->L
+			92->W
+		End
 	End
 	If D=224
 	ClrDraw
@@ -32,7 +40,7 @@ If C<48
 Then
 	1+dim(|LSTK->dim(|LSTK
 	P->|LSTK(dim(|LSTK
-	D+(256(16fPart(C/16->P
+	D+4096fPart(C/16->P
 	Return
 End
 If C<64
@@ -114,8 +122,13 @@ Then
 	End
 	If A=6
 	Then
+		If M
+		Then
+			int(|LREG(1+int(D/16))/2->|LREG(1+16fPart(C/16
+		Else
+			int(|LREG(1+16fPart(C/16))/2->|LREG(1+16fPart(C/16
+		End
 		2fPart(G/2->|LREG(16
-		int(|LREG(1+int(D/16))/2->|LREG(1+16fPart(C/16
 		Return
 	End
 	If A=7
@@ -130,8 +143,13 @@ Then
 	End
 	If A=14
 	Then
-		128<=|LREG(1+16fPart(C/16->|LREG(16
-		256fPart(2H/256->|LREG(1+16fPart(C/16
+		If M
+		Then
+			256fPart(2H/256->|LREG(1+16fPart(C/16
+		Else
+			256fPart(2G/256->|LREG(1+16fPart(C/16
+		End
+		128<=G->|LREG(16
 	End
 	Return
 End
@@ -142,7 +160,7 @@ Then
 End
 If C<176
 Then
-	D+(4096fPart(C/16->I
+	D+4096fPart(C/16->I
 	Return
 End
 If C<192
@@ -152,8 +170,13 @@ Then
 End
 If C<208
 Then
+	0->B
 	randInt(0,255->R
-	R->|LREG(1+16fPart(C/16
+	For([recursiven],0,8
+		round(e^([recursiven]ln(2)),0
+		B+(1<2fPart(.5int(D/Ans))+2fPart(.5int(R/Ans->B
+	End
+	B->|LREG(1+16fPart(C/16
 	Return
 End
 If C<224
@@ -168,24 +191,24 @@ Then
 		I->E
 		For(O,1,16fPart(D/16
 			|LREG(1+(16fPart(C/16->G
-			int(E/8->A
+			1+int(E/8->A
 			8fPart(E/8->B
 			If B=7
-			iPart(1000fPart(10|E8imag(|LRAM(A+1->R
+			iPart(1000fPart(10|E8imag(|LRAM(A->R
 			If B=6
-			iPart(1000fPart(10|E5imag(|LRAM(A+1->R
+			iPart(1000fPart(10|E5imag(|LRAM(A->R
 			If B=5
-			1000fPart(.001iPart(10|E5imag(|LRAM(A+1->R
+			1000fPart(.001iPart(10|E5imag(|LRAM(A->R
 			If B=4
-			iPart(1000imag(|LRAM(A+1->R
+			iPart(1000imag(|LRAM(A->R
 			If B=3
-			iPart(1000fPart(10|E8real(|LRAM(A+1->R
+			iPart(1000fPart(10|E8real(|LRAM(A->R
 			If B=2
-			iPart(1000fPart(10|E5real(|LRAM(A+1->R
+			iPart(1000fPart(10|E5real(|LRAM(A->R
 			If B=1
-			1000fPart(.001iPart(10|E5real(|LRAM(A+1->R
+			1000fPart(.001iPart(10|E5real(|LRAM(A->R
 			If not(B
-			iPart(1000real(|LRAM(A+1->R
+			iPart(1000real(|LRAM(A->R
 			For(N,1,8
 				If R>127
 				Then
@@ -205,7 +228,40 @@ Then
 End
 If C<240
 Then
-	16fPart(getKey/16->K
+	~1->K
+	getKey
+	If Ans=103
+	0->K
+	If Ans=72
+	1->K
+	If Ans=73 or Ans=25
+	2->K
+	If Ans=74
+	3->K
+	If Ans=82 or Ans=24
+	4->K
+	If Ans=83 or Ans=34
+	5->K
+	If Ans=84 or Ans=26
+	6->K
+	If Ans=92
+	7->K
+	If Ans=93
+	8->K
+	If Ans=94
+	9->K
+	If Ans=102
+	10->K
+	If Ans=104
+	11->K
+	If Ans=75
+	12->K
+	If Ans=85
+	13->K
+	If Ans=95
+	14->K
+	If Ans=105
+	15->K
 	If D=158
 	Then
 		P+2(K=|LREG(1+16fPart(C/16->P
@@ -216,15 +272,46 @@ Then
 End
 If D=7
 Then
-	Q->|LRAM(1+16fPart(C/16
+	Q->|LREG(1+16fPart(C/16
 	Return
 End
 If D=10
 Then
-	Repeat K
-		getKey->K
+	0->K
+	Repeat Ans>71 and 1<10fPart(Ans/10
+		getKey
 	End
-	16fPart(K/16->|LREG(1+16fPart(C/16
+	If Ans=72
+	1->K
+	If Ans=73 or Ans=25
+	2->K
+	If Ans=74
+	3->K
+	If Ans=82 or Ans=24
+	4->K
+	If Ans=83 or Ans=34
+	5->K
+	If Ans=84 or Ans=26
+	6->K
+	If Ans=92
+	7->K
+	If Ans=93
+	8->K
+	If Ans=94
+	9->K
+	If Ans=102
+	10->K
+	If Ans=104
+	11->K
+	If Ans=75
+	12->K
+	If Ans=85
+	13->K
+	If Ans=95
+	14->K
+	If Ans=105
+	15->K
+	K->|LREG(1+16fPart(C/16
 	Return
 End
 If D=21
@@ -237,6 +324,11 @@ Then
 	|LREG(1+16fPart(C/16->S
 	Return
 End
+If D=30
+Then
+	4096fPart((I+|LREG(1+16fPart(C/16)))/4096->I
+	Return
+End
 If D=41
 Then
 	(5^theta)|LREG(1+16fPart(C/16->I
@@ -244,7 +336,7 @@ Then
 End
 If D=48
 Then
-	80+(10^theta|LREG(1+16fPart(C/16->I
+	80+10^(theta)|LREG(1+16fPart(C/16->I
 	Return
 End
 If D=51
@@ -252,23 +344,23 @@ Then
 	For([recursiven],0,2
 		1+int(.125(I+[recursiven]->A
 		8fPart(.125(I+[recursiven]->B
-		iPart(1000fPart(10|E8imag(|LRAM(A
+		.000000000001iPart(1000fPart(10|E8imag(|LRAM(A
 		If B=6
-		iPart(1000fPart(10|E5imag(|LRAM(A
+		.000000001iPart(1000fPart(10|E5imag(|LRAM(A
 		If B=5
-		1000fPart(.001iPart(10|E5imag(|LRAM(A
+		.001fPart(.001iPart(10|E5imag(|LRAM(A
 		If B=4
-		iPart(1000imag(|LRAM(A
+		.001iPart(1000imag(|LRAM(A
 		If B=3
-		iPart(1000fPart(10|E8real(|LRAM(A
+		.000000000001iPart(1000fPart(10|E8real(|LRAM(A
 		If B=2
-		iPart(1000fPart(10|E5real(|LRAM(A
+		.000000001iPart(1000fPart(10|E5real(|LRAM(A
 		If B=1
-		1000fPart(.001iPart(10|E5real(|LRAM(A
+		.001fPart(.001iPart(10|E5real(|LRAM(A
 		If not(B
-		iPart(1000real(|LRAM(A
+		.001iPart(1000real(|LRAM(A
 		Ans->Z
-		4fPart(.25(B->E
+		4fPart(.25B->E
 		10fPart(.1|LREG(1+16fPart(C/16
 		If [recursiven]=1
 		10fPart(.1int(.1|LREG(1+16fPart(C/16
@@ -288,30 +380,30 @@ Then
 	End
 	Return
 End
-If D<=101
+If D<102
 Then
 	For([recursiven],0,16fPart(C/16
 		1+int(.125(I+[recursiven]->A
 		8fPart(.125(I+[recursiven]->B
-		iPart(1000fPart(10|E8imag(|LRAM(A
+		.000000000001iPart(1000fPart(10|E8imag(|LRAM(A
 		If B=6
-		iPart(1000fPart(10|E5imag(|LRAM(A
+		.000000001iPart(1000fPart(10|E5imag(|LRAM(A
 		If B=5
-		1000fPart(.001iPart(10|E5imag(|LRAM(A
+		.001fPart(.001iPart(10|E5imag(|LRAM(A
 		If B=4
-		iPart(1000imag(|LRAM(A
+		.001iPart(1000imag(|LRAM(A
 		If B=3
-		iPart(1000fPart(10|E8real(|LRAM(A
+		.000000000001iPart(1000fPart(10|E8real(|LRAM(A
 		If B=2
-		iPart(1000fPart(10|E5real(|LRAM(A
+		.000000001iPart(1000fPart(10|E5real(|LRAM(A
 		If B=1
-		1000fPart(.001iPart(10|E5real(|LRAM(A
+		.001fPart(.001iPart(10|E5real(|LRAM(A
 		If not(B
-		iPart(1000real(|LRAM(A
+		.001iPart(1000real(|LRAM(A
 		Ans->Z
+		4fPart(.25B->E
 		If D=85
 		Then
-			4fPart(.25(B->E
 			|LREG([recursiven]+1
 			If not(E
 			.001Ans
@@ -326,8 +418,21 @@ Then
 			Ans-Z+|LRAM(A->|LRAM(A
 		End
 		If D=101
-		Z->|LREG([recursiven]+1
+		Z(10^(E3+3->|LREG([recursiven]+1
+		If J
+		I+[recursiven]+1->I
+		Return
 	End
-	If J
-	I+[recursiven]+1->I
-End
+	If D=117
+	Then
+		For([recursiven],0,16fPart(C/16
+			|LRPL([recursiven]+1->|LREG([recursiven]+1
+		End
+		Return
+	End
+	If D=133
+	Then
+		For([recursiven],0,16fPart(C/16
+			|LREG([recursiven]+1->|LRPL([recursiven]+1
+		End
+	End
