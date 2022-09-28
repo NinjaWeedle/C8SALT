@@ -1,6 +1,6 @@
 # C8SALT
-A WIP CHIP-8 emulator written in TI-BASIC.
+A WIP CHIP-8 emulator written in pure TI-BASIC.
 
-Suppports CHIP-8 and eventually SuperCHIP games.
+Supports CHIP-8 and select SuperCHIP games.
 
 Check the main README, README.txt, for more information.
