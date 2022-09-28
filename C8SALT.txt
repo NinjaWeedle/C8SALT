@@ -34,7 +34,6 @@ Then
 		|LFONT([recursiven])+[i]|LFONT([recursiven]+1->|LRAM(Z
 	End
 End
-[i].000000000003->|LRAM(64
 SetUpEditor ROM,RPL
 If 2fPart(.5dim(|LROM
 1+dim(|LROM->dim(|LROM

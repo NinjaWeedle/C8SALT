@@ -421,18 +421,19 @@ Then
 		Z(10^(E3+3->|LREG([recursiven]+1
 		If J
 		I+[recursiven]+1->I
-		Return
 	End
-	If D=117
-	Then
-		For([recursiven],0,16fPart(C/16
-			|LRPL([recursiven]+1->|LREG([recursiven]+1
-		End
-		Return
+	Return
+End
+If D=117
+Then
+	For([recursiven],0,16fPart(C/16
+		|LRPL([recursiven]+1->|LREG([recursiven]+1
 	End
-	If D=133
-	Then
-		For([recursiven],0,16fPart(C/16
-			|LREG([recursiven]+1->|LRPL([recursiven]+1
-		End
+	Return
+End
+If D=133
+Then
+	For([recursiven],0,16fPart(C/16
+		|LREG([recursiven]+1->|LRPL([recursiven]+1
 	End
+End
