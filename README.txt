@@ -6,11 +6,11 @@ CCC  8 8  SSS  A        T_T
 C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
 By Oxiti8
 
-BETA VERSION V0.9
+VERSION V0.10.0
 
-C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games at a blistering 0.1 FPS!
-5 games are included with C8SALT, along with a ROM converter written in Python 3 allowing you to play any CHIP-8 game with C8SALT.
-You can even import your own custom fonts!
+C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games (as well as some SCHIP games) at a blistering 0.1 FPS!
+6 programs are included with C8SALT, along with a ROM converter written in Python 3 allowing you to use your own CHIP-8 games with C8SALT.
+You can even import your own custom fonts! V1.0 
 
 *TABLE OF CONTENTS*
 
@@ -27,35 +27,34 @@ I. INSTALLATION:
  2. Select an option from the menu:
 	1 - RESUME: If you pressed ON to stop C8SALT mid-execution and you haven't cleared the graph screen, you can select this option to pick up where you left off.
 	2 - LOAD FROM LROM: Loads the rom data stored in ROM. For info on converting CHIP-8 software for use with C8SALT, see ROM CONVERSION INSTRUCTIONS.
-	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off) as well as decide the behavior of FX55/65 (0 = Do not increment I (SCHIP style), 1 = Increment I (VIP/Octo style))
+	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off) as well as decide the behavior of FX55/65 (0 = Do not increment I (SCHIP style), 1 = Increment I (VIP/Octo style)), and set the shift quirk for 8XY6/8XYE (0 = SCHIP style (default), 1 = VIP/Octo style).
 	4 - EXIT: Exits C8SALT.
 
-WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
-This is because C8SALT uses the Real( command as part of its memory decompression routine, a command which XLib uses for its functions. 
+ WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
+ This is because C8SALT uses the Real( command as part of its memory decompression routine, a command which XLib uses for its functions. 
 
-You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder, or if you want to import your own, refer to Section II.
+ You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder, or if you want to import your own, refer to Section II.
 
 
 II. ROM CONVERSION INSTRUCTIONS:
 
- 1. Put your CHIP-8 program in the "Programs" folder, or in the same place as convert.py.
- 2. Rename your CHIP-8 program "program.ch8"
- 3. Run convert.py. It should create a file named "ROM.txt".
+ 1. Open the "Programs" folder.
+ 2. Drag and drop your CHIP-8 program binary(Generally a .ch8 or .sc8 file) onto convert.py. It should output a file named "ROM.txt".
 
  For the following steps, you have two options based on the tool you want to use:
 
  FOR TI-CONNECT USERS (Recommended):
-  4. Open TI-Connect, and open "TI DataEditor".
-  5. Go to File > Import... and import your "ROM.txt" file.
-  6. Click File -> Save As... and save the list as "ROM.8xl".
-  7. Send the ROM.8xl file to your calculator.
+  3. Open TI-Connect, and open "TI DataEditor".
+  4. Go to File > Import... and import your "ROM.txt" file.
+  5. Click File -> Save As... and save the list as "ROM.8xl".
+  6. Send the ROM.8xl file to your calculator.
 
  FOR SOURCECODER 3 USERS:
-  4. Convert the ROM.txt file to the comma delimited .csv format. This can be done thru Microsoft Excel or whatever spreadsheet editor you have available.
-  5. Go to https://www.cemetech.net/sc/ and open your ROM.csv file. It should show up in SourceCoder 3 as "|LROM".
-  6. Rename the file from "|LROM" to "ROM".
-  7. Click "Export File". It should export as "ROM.8xl".
-  8. Send ROM.8xl to your calculator.
+  3. Convert the ROM.txt file to the comma delimited .csv format. This can be done thru Microsoft Excel or whatever spreadsheet editor you have available.
+  4. Go to https://www.cemetech.net/sc/ and open your ROM.csv file. It should show up in SourceCoder 3 as "|LROM".
+  5. Rename the file from "|LROM" to "ROM".
+  6. Click "Export File". It should export as "ROM.8xl".
+  7. Send ROM.8xl to your calculator.
 
  Now you can run C8SALT, and you should now be able to play your game!
 
@@ -66,7 +65,7 @@ III. CONTROLS (Note- Due to emulation speed you may need to mash the keys for th
 
  MODE - Quit C8SALT, clean up lists used during emulation, and display debug info.
  
-Controls are unique in that the keys used are the GetKey value modulo 16.
+
 
 IV. TECHNICAL INFO
 
@@ -75,10 +74,15 @@ IV. TECHNICAL INFO
 
  - On the limited SuperCHIP support:
 
- You can use 00FD (EXIT), 00FE (LORES), and Fx30 (BIGFONT VX) just fine.
- SuperCHIP Hires mode (00FF) can also be used, but you're limited to a 94x62 resolution when using it rather than the full 128x64.
+ You can use 00FD (EXIT), 00FE (LORES), Fx30 (BIGFONT VX), Fx75 (LD R, Vx), and Fx85 (LD Vx, R) just fine.
+ SuperCHIP Hires mode (00FF) can also be used, but on the monochrome calculators you're limited to a 92x62 resolution when using it rather than the full 128x64 and as such errors can and will occur.
+ - On the CSE and CE though, you can use the full 128x64 resolution.
 
-DXY0, 00Cn(SCD n), 00FB (SCR), 00FC (SCL), FX75, and FX85 are not supported.
+ DXY0, 00Cn(SCD n), 00FB (SCR), and 00FC (SCL) are not supported.
+
+ C8SALT uses the list "RPL" for Fx75 and Fx85, and this list is not deleted/cleared upon exiting or starting C8SALT.
+ - This means that one can use the "RPL flags" as a form of persistent data storage like on the HP48.
+ - Fx75 and Fx85 also support up to 16 entries as outlined in the XO-CHIP 1.1 spec instead of just the original 8.
 
 
 V. VARIABLE GUIDE
@@ -95,10 +99,11 @@ E = Dummy 3
 F = Dummy 4
 J = Increment I during FX55/65 flag
 K = getkey
+L = Screen height
+M = Shift Quirk Flag
 Q = Delay Timer
 R = Return value
 S = Sound timer 
-L = Screen height
 W = Screen width
 Z = Temp in Fx55/65
 Theta = HLE Font Toggle
@@ -107,7 +112,7 @@ Recursive n = temp var.
 VI. CREDITS
 
 Programmed by Oxiti8.
-Rom importer created by A-KouZ1.
+Rom importer created by A-KouZ1, modified by Oxiti8.
 
 Special thanks to Mr Womp Womp, kg583, and calc84maniac, and fghsgh for help with memory compression and optimization. C8SALT wouldn't exist without them.
 
