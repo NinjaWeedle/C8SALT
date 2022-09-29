@@ -6,11 +6,11 @@ CCC  8 8  SSS  A        T_T
 C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
 By Oxiti8
 
-VERSION V0.10.1
+VERSION V1.0
 
 C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games (as well as some SCHIP games) at a blistering 0.1 FPS!
-6 programs are included with C8SALT, along with a ROM converter written in Python 3 allowing you to use your own CHIP-8 games with C8SALT.
-You can even import your own custom fonts! V1.0 
+9 programs are included with C8SALT, along with a ROM converter written in Python 3 allowing you to use your own CHIP-8 games with C8SALT.
+You can even import your own custom fonts!
 
 *TABLE OF CONTENTS*
 
@@ -28,12 +28,13 @@ I. INSTALLATION:
 	1 - RESUME: If you pressed ON to stop C8SALT mid-execution and you haven't cleared the graph screen, you can select this option to pick up where you left off.
 	2 - LOAD FROM LROM: Loads the rom data stored in ROM. For info on converting CHIP-8 software for use with C8SALT, see ROM CONVERSION INSTRUCTIONS.
 	3 - SETTINGS: From here, you can enable and disable HLE Text Rendering (0 = on, 1 = off) as well as decide the behavior of FX55/65 (0 = Do not increment I (SCHIP style), 1 = Increment I (VIP/Octo style)), and set the shift quirk for 8XY6/8XYE (0 = SCHIP style (default), 1 = VIP/Octo style).
-	4 - EXIT: Exits C8SALT.
+	4 - CLEAR RPL DATA: Selecting this option clears the RPL flags that FX75/FX85 use.
+	5 - EXIT: Exits C8SALT.
 
  WARNING: IF YOU HAVE XLib OR CELTIC III INSTALLED, YOU MUST DISABLE THEM TO RUN C8SALT!
  This is because C8SALT uses the Real( command as part of its memory decompression routine, a command which XLib uses for its functions. 
 
- You can find already converted ROM.8xl files to send to your calculator in the "Programs" folder, or if you want to import your own, refer to Section II.
+ You can find preconverted ROM.8xl files to send to your calculator in the "Programs" folder, or if you want to import your own, refer to Section II.
 
 
 II. ROM CONVERSION INSTRUCTIONS:
@@ -58,13 +59,28 @@ II. ROM CONVERSION INSTRUCTIONS:
 
  Now you can run C8SALT, and you should now be able to play your game!
 
- (You can also create custom fonts this way by saving the hex data for them in a .ch8 file, then following the program conversion process- just rename the "ROM.8xl" to "FONT.8xl" when finished)
+ (You can also create custom fonts this way by saving the hex data for them in a .ch8 file, then following the program conversion process- just rename the resulting "ROM.8xl" file to "FONT.8xl" when finished)
 
 
 III. CONTROLS (Note- Due to emulation speed you may need to mash the keys for them to register.):
 
  MODE - Quit C8SALT, clean up lists used during emulation, and display debug info.
+
+ The controls for the keypad are the same as Vinegar:
+
+ Chip-8
+ 1	2	3	C
+ 4	5	6	D
+ 7	8	9	E
+ A	0	B	F
+
+ TI-83+
+ 7	8	9	×
+ 4	5	6	-
+ 1	2	3	+
+ 0	.	(-)	Enter
  
+ You can also use the arrow keys in place of 2, 4, 5, and 6.
 
 
 IV. TECHNICAL INFO
@@ -75,7 +91,7 @@ IV. TECHNICAL INFO
  - On the limited SuperCHIP support:
 
  You can use 00FD (EXIT), 00FE (LORES), Fx30 (BIGFONT VX), Fx75 (LD R, Vx), and Fx85 (LD Vx, R) just fine.
- SuperCHIP Hires mode (00FF) can also be used, but on the monochrome calculators you're limited to a 92x62 resolution when using it rather than the full 128x64 and as such errors can and will occur.
+ SuperCHIP 128x64 mode (00FF) can also be used, but on the monochrome calculators you're limited to a 92x62 resolution when using it rather than the full 128x64 and as such errors can and will occur.
  - On the CSE and CE though, you can use the full 128x64 resolution.
 
  DXY0, 00Cn(SCD n), 00FB (SCR), and 00FC (SCL) are not supported.
@@ -83,6 +99,11 @@ IV. TECHNICAL INFO
  C8SALT uses the list "RPL" for Fx75 and Fx85, and this list is not deleted/cleared upon exiting or starting C8SALT.
  - This means that one can use the "RPL flags" as a form of persistent data storage like on the HP48.
  - Fx75 and Fx85 also support up to 16 entries as outlined in the XO-CHIP 1.1 spec instead of just the original 8.
+
+ Rom data is stored in a list, with 4 bytes being stored per list entry:
+  0.001002003004
+ C8SALT loads this ROM into list RAM, which itself stores 8 bytes per list entry:
+  .001002003004+i.005006007008
 
 
 V. VARIABLE GUIDE
@@ -105,7 +126,7 @@ Q = Delay Timer
 R = Return value
 S = Sound timer 
 W = Screen width
-Z = Temp in Fx55/65
+Z = Temp
 Theta = HLE Font Toggle
 Recursive n = temp var.
 

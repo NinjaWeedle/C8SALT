@@ -7,7 +7,7 @@ Then
 End
 Lbl A
 ClrHome
-Menu("C8SALT BY OXITI8","RESUME",1,"LOAD FROM |LROM",2,"SETTINGS",3,"CLEAR RPL FLAGS",4,"EXIT",5
+Menu("C8SALT BY OXITI8","RESUME",1,"LOAD FROM |LROM",2,"SETTINGS",3,"CLEAR RPL DATA",4,"EXIT",5
 Lbl 5
 Stop
 Lbl 4
@@ -26,13 +26,10 @@ W->B
 32->L
 ClrList |LREG,|LSTK,|LRAM
 P->dim(|LRAM
-If theta
-Then
-	DelVar ZSetUpEditor FONT
-	For([recursiven],1,dim(|LFONT),2
-		Z+1->Z
-		|LFONT([recursiven])+[i]|LFONT([recursiven]+1->|LRAM(Z
-	End
+DelVar ZSetUpEditor FONT
+For([recursiven],1,dim(|LFONT),2
+	Z+1->Z
+	|LFONT([recursiven])+[i]|LFONT([recursiven]+1->|LRAM(Z
 End
 SetUpEditor ROM,RPL
 If 2fPart(.5dim(|LROM
@@ -53,25 +50,45 @@ Text(~1,56(2-Ans),60(2-Ans),"C8SALT
 Repeat getKey=22
 	|LRAM(1+int(P/8->A
 	8fPart(P/8->B
-	If B>3
+	If B=7
 	Then
-		If B=6
-		Then
-			iPart(1000fPart(10|E5imag(A->C
-			iPart(1000fPart(10|E8imag(A->D
-		Else
-			iPart(1000imag(A->C
-			1000fPart(.001iPart(10|E5imag(A->D
-		End
-	Else
-		If B
-		Then
-			iPart(1000fPart(10|E5real(A->C
-			iPart(1000fPart(10|E8real(A->D
-		Else
-			iPart(1000real(A->C
-			1000fPart(.001iPart(10|E5real(A->D
-		End
+		iPart(1000fPart(10|E8imag(A->C
+		iPart(1000real(|LRAM(2+int(P/8->D
+	End
+	If B=6
+	Then
+		iPart(1000fPart(10|E5imag(A->C
+		iPart(1000fPart(10|E8imag(A->D
+	End
+	If B=5
+	Then
+		1000fPart(.001iPart(10|E5imag(A->C
+		iPart(1000fPart(10|E5imag(A->D
+	End
+	If B=4
+	Then
+		iPart(1000imag(A->C
+		1000fPart(.001iPart(10|E5imag(A->D
+	End
+	If B=1
+	Then
+		1000fPart(.001iPart(10|E5real(A->C
+		iPart(1000fPart(10|E5real(A->D
+	End
+	If B=2
+	Then
+		iPart(1000fPart(10|E5real(A->C
+		iPart(1000fPart(10|E8real(A->D
+	End
+	If B=3
+	Then
+		iPart(1000fPart(10|E8real(A->C
+		iPart(1000imag(A->D
+	End
+	If not(B
+	Then
+		iPart(1000real(A->C
+		1000fPart(.001iPart(10|E5real(A->D
 	End
 	P+2->P
 	prgmC8CPU

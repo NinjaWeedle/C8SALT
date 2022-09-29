@@ -8,16 +8,16 @@ Then
 	End
 	If D=253
 	Stop
+	If D>223
+	ClrDraw
 	If D=254
 	Then
-		ClrDraw
 		32->L
 		64->W
 		Return
 	End
 	If D=255
 	Then
-		ClrDraw
 		If not(Xmin+|E2DeltaX>Xmax
 		Then
 			64->L
@@ -27,8 +27,6 @@ Then
 			92->W
 		End
 	End
-	If D=224
-	ClrDraw
 	Return
 End
 If C<32
@@ -109,6 +107,7 @@ Then
 		H+G->B
 		B>255->|LREG(16
 		256fPart(B/256->|LREG(1+16fPart(C/16
+		Return
 	End
 	If A=5
 	Then
@@ -124,11 +123,11 @@ Then
 	Then
 		If M
 		Then
-			int(|LREG(1+int(D/16))/2->|LREG(1+16fPart(C/16
+			int(.5H->|LREG(1+16fPart(C/16
 		Else
-			int(|LREG(1+16fPart(C/16))/2->|LREG(1+16fPart(C/16
+			int(.5G->|LREG(1+16fPart(C/16
 		End
-		2fPart(G/2->|LREG(16
+		2fPart(.5G->|LREG(16
 		Return
 	End
 	If A=7
@@ -279,6 +278,8 @@ If D=10
 Then
 	0->K
 	Repeat Ans>71 and 1<10fPart(Ans/10
+		If Q
+		Q-1->Q
 		getKey
 	End
 	If Ans=72
