@@ -24,22 +24,22 @@ Output(4,5,"LOADING...
 W->B
 8W->P
 32->L
-ClrList |LREG,|LSTK,|LRAM
-P->dim(|LRAM
+ClrList L2,|LSTK,L1
+P->dim(L1
 DelVar ZSetUpEditor FONT
 For([recursiven],1,dim(|LFONT),2
 	Z+1->Z
-	|LFONT([recursiven])+[i]|LFONT([recursiven]+1->|LRAM(Z
+	|LFONT([recursiven])+[i]|LFONT([recursiven]+1->L1(Z
 End
 SetUpEditor ROM,RPL
 If 2fPart(.5dim(|LROM
 1+dim(|LROM->dim(|LROM
 For([recursiven],1,dim(|LROM),2
 	B+1->B
-	|LROM([recursiven])+[i]|LROM([recursiven]+1->|LRAM(B
+	|LROM([recursiven])+[i]|LROM([recursiven]+1->L1(B
 End
 Archive |LROM
-16->dim(|LREG
+16->dim(L2
 16->dim(|LRPL
 DelVar IDelVar BDelVar SDelVar QOutput(5,2,"ALL SYSTEMS GO
 1->dim(|LSTK
@@ -48,47 +48,47 @@ Lbl 1
 Xmin+|E2DeltaX>Xmax
 Text(~1,56(2-Ans),60(2-Ans),"C8SALT
 Repeat getKey=22
-	|LRAM(1+int(P/8->A
+	L1(1+int(P/8->A
 	8fPart(P/8->B
 	If B=7
 	Then
-		iPart(1000fPart(10|E8imag(A->C
-		iPart(1000real(|LRAM(2+int(P/8->D
+		iPart(1000fPart(|E9imag(A->C
+		iPart(1000real(L1(2+int(P/8->D
 	End
 	If B=6
 	Then
-		iPart(1000fPart(10|E5imag(A->C
-		iPart(1000fPart(10|E8imag(A->D
+		iPart(1000fPart(|E6imag(A->C
+		iPart(1000fPart(|E9imag(A->D
 	End
 	If B=5
 	Then
-		1000fPart(.001iPart(10|E5imag(A->C
-		iPart(1000fPart(10|E5imag(A->D
+		1000fPart(.001iPart(|E6imag(A->C
+		iPart(1000fPart(|E6imag(A->D
 	End
 	If B=4
 	Then
 		iPart(1000imag(A->C
-		1000fPart(.001iPart(10|E5imag(A->D
+		1000fPart(.001iPart(|E6imag(A->D
 	End
 	If B=1
 	Then
-		1000fPart(.001iPart(10|E5real(A->C
-		iPart(1000fPart(10|E5real(A->D
+		1000fPart(.001iPart(|E6real(A->C
+		iPart(1000fPart(|E6real(A->D
 	End
 	If B=2
 	Then
-		iPart(1000fPart(10|E5real(A->C
-		iPart(1000fPart(10|E8real(A->D
+		iPart(1000fPart(|E6real(A->C
+		iPart(1000fPart(|E9real(A->D
 	End
 	If B=3
 	Then
-		iPart(1000fPart(10|E8real(A->C
+		iPart(1000fPart(|E9real(A->C
 		iPart(1000imag(A->D
 	End
 	If not(B
 	Then
 		iPart(1000real(A->C
-		1000fPart(.001iPart(10|E5real(A->D
+		1000fPart(.001iPart(|E6real(A->D
 	End
 	P+2->P
 	prgmC8CPU
@@ -97,7 +97,7 @@ Repeat getKey=22
 	If S
 	S-1->S
 End
-DelVar |LRAMClrHome
+DelVar L1ClrHome
 Disp "PC:
 Output(1,5,P
 Disp "I:

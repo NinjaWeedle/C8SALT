@@ -43,37 +43,37 @@ Then
 End
 If C<64
 Then
-	P+2(D=|LREG(1+16fPart(C/16->P
+	P+2(D=L2(1+16fPart(C/16->P
 	Return
 End
 If C<80
 Then
-	P+2(D!=|LREG(1+16fPart(C/16->P
+	P+2(D!=L2(1+16fPart(C/16->P
 	Return
 End
 If C<96
 Then
-	P+2(|LREG(1+16fPart(C/16))=|LREG(1+int(D/16->P
+	P+2(L2(1+16fPart(C/16))=L2(1+int(D/16->P
 	Return
 End
 If C<112
 Then
-	D->|LREG(1+16fPart(C/16
+	D->L2(1+16fPart(C/16
 	Return
 End
 If C<128
 Then
-	D+|LREG(1+16fPart(C/16
-	256fPart(Ans/256->|LREG(1+16fPart(C/16
+	D+L2(1+16fPart(C/16
+	256fPart(Ans/256->L2(1+16fPart(C/16
 	Return
 End
 If C<144
 Then
 	16fPart(D/16->A
-	|LREG(1+int(D/16->H
-	|LREG(1+16fPart(C/16->G
+	L2(1+int(D/16->H
+	L2(1+16fPart(C/16->G
 	If not(A
-	H->|LREG(1+16fPart(C/16
+	H->L2(1+16fPart(C/16
 	0->F
 	If A=1
 	Then
@@ -81,7 +81,7 @@ Then
 			round(e^(Bln(2)),0->E
 			F+E(0<((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
 		End
-		F->|LREG(1+16fPart(C/16
+		F->L2(1+16fPart(C/16
 		Return
 	End
 	If A=2
@@ -90,7 +90,7 @@ Then
 			round(e^(Bln(2)),0->E
 			F+E(1<((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
 		End
-		F->|LREG(1+16fPart(C/16
+		F->L2(1+16fPart(C/16
 		Return
 	End
 	If A=3
@@ -99,14 +99,14 @@ Then
 			round(e^(Bln(2)),0->E
 			F+E(2fPart(.5((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
 		End
-		F->|LREG(1+16fPart(C/16
+		F->L2(1+16fPart(C/16
 		Return
 	End
 	If A=4
 	Then
 		H+G->B
-		B>255->|LREG(16
-		256fPart(B/256->|LREG(1+16fPart(C/16
+		B>255->L2(16
+		256fPart(B/256->L2(1+16fPart(C/16
 		Return
 	End
 	If A=5
@@ -115,19 +115,19 @@ Then
 		B>=0->E
 		If not(E
 		B+256->B
-		256fPart(B/256->|LREG(1+16fPart(C/16
-		E->|LREG(16
+		256fPart(B/256->L2(1+16fPart(C/16
+		E->L2(16
 		Return
 	End
 	If A=6
 	Then
 		If M
 		Then
-			int(.5H->|LREG(1+16fPart(C/16
+			int(.5H->L2(1+16fPart(C/16
 		Else
-			int(.5G->|LREG(1+16fPart(C/16
+			int(.5G->L2(1+16fPart(C/16
 		End
-		2fPart(.5G->|LREG(16
+		2fPart(.5G->L2(16
 		Return
 	End
 	If A=7
@@ -136,25 +136,25 @@ Then
 		B>=0->E
 		If not(E
 		B+256->B
-		256fPart(B/256->|LREG(1+16fPart(C/16
-		E->|LREG(16
+		256fPart(B/256->L2(1+16fPart(C/16
+		E->L2(16
 		Return
 	End
 	If A=14
 	Then
 		If M
 		Then
-			256fPart(2H/256->|LREG(1+16fPart(C/16
+			256fPart(2H/256->L2(1+16fPart(C/16
 		Else
-			256fPart(2G/256->|LREG(1+16fPart(C/16
+			256fPart(2G/256->L2(1+16fPart(C/16
 		End
-		128<=G->|LREG(16
+		128<=G->L2(16
 	End
 	Return
 End
 If C<160
 Then
-	P+2(|LREG(1+(16fPart(C/16)))!=|LREG(1+(int(D/16->P
+	P+2(L2(1+(16fPart(C/16)))!=L2(1+(int(D/16->P
 	Return
 End
 If C<176
@@ -164,7 +164,7 @@ Then
 End
 If C<192
 Then
-	D+4096fPart(C/16)+|LREG(1->P
+	D+4096fPart(C/16)+L21->P
 	Return
 End
 If C<208
@@ -175,39 +175,39 @@ Then
 		round(e^([recursiven]ln(2)),0
 		B+(1<2fPart(.5int(D/Ans))+2fPart(.5int(R/Ans->B
 	End
-	B->|LREG(1+16fPart(C/16
+	B->L2(1+16fPart(C/16
 	Return
 End
 If C<224
 Then
 	0->[recursiven]
-	|LREG(1+(int(D/16->H
+	L2(1+(int(D/16->H
 	If I<420 and not(theta
 	Then
 		If I<16
-		Text(1+LfPart(H/L),1+WfPart(|LREG(1+16fPart(C/16))/W),sub("0123456789ABCDEF",I+1,1
+		Text(1+LfPart(H/L),1+WfPart(L2(1+16fPart(C/16))/W),sub("0123456789ABCDEF",I+1,1
 	Else
 		I->E
 		For(O,1,16fPart(D/16
-			|LREG(1+(16fPart(C/16->G
+			L2(1+(16fPart(C/16->G
 			1+int(E/8->A
 			8fPart(E/8->B
 			If B=7
-			iPart(1000fPart(10|E8imag(|LRAM(A->R
+			iPart(1000fPart(|E9imag(L1(A->R
 			If B=6
-			iPart(1000fPart(10|E5imag(|LRAM(A->R
+			iPart(1000fPart(|E6imag(L1(A->R
 			If B=5
-			1000fPart(.001iPart(10|E5imag(|LRAM(A->R
+			1000fPart(.001iPart(|E6imag(L1(A->R
 			If B=4
-			iPart(1000imag(|LRAM(A->R
+			iPart(1000imag(L1(A->R
 			If B=3
-			iPart(1000fPart(10|E8real(|LRAM(A->R
+			iPart(1000fPart(|E9real(L1(A->R
 			If B=2
-			iPart(1000fPart(10|E5real(|LRAM(A->R
+			iPart(1000fPart(|E6real(L1(A->R
 			If B=1
-			1000fPart(.001iPart(10|E5real(|LRAM(A->R
+			1000fPart(.001iPart(|E6real(L1(A->R
 			If not(B
-			iPart(1000real(|LRAM(A->R
+			iPart(1000real(L1(A->R
 			For(N,1,8
 				If R>127
 				Then
@@ -222,7 +222,7 @@ Then
 			E+1->E
 		End
 	End
-	[recursiven]->|LREG(16
+	[recursiven]->L2(16
 	Return
 End
 If C<240
@@ -263,15 +263,15 @@ Then
 	15->K
 	If D=158
 	Then
-		P+2(K=|LREG(1+16fPart(C/16->P
+		P+2(K=L2(1+16fPart(C/16->P
 	Else
-		P+2(K!=|LREG(1+16fPart(C/16->P
+		P+2(K!=L2(1+16fPart(C/16->P
 	End
 	Return
 End
 If D=7
 Then
-	Q->|LREG(1+16fPart(C/16
+	Q->L2(1+16fPart(C/16
 	Return
 End
 If D=10
@@ -312,32 +312,32 @@ Then
 	14->K
 	If Ans=105
 	15->K
-	K->|LREG(1+16fPart(C/16
+	K->L2(1+16fPart(C/16
 	Return
 End
 If D=21
 Then
-	|LREG(1+16fPart(C/16->Q
+	L2(1+16fPart(C/16->Q
 	Return
 End
 If D=24
 Then
-	|LREG(1+16fPart(C/16->S
+	L2(1+16fPart(C/16->S
 	Return
 End
 If D=30
 Then
-	4096fPart((I+|LREG(1+16fPart(C/16)))/4096->I
+	4096fPart((I+L2(1+16fPart(C/16)))/4096->I
 	Return
 End
 If D=41
 Then
-	(5^theta)|LREG(1+16fPart(C/16->I
+	(5^theta)L2(1+16fPart(C/16->I
 	Return
 End
 If D=48
 Then
-	80+10^(theta)|LREG(1+16fPart(C/16->I
+	80+10^(theta)L2(1+16fPart(C/16->I
 	Return
 End
 If D=51
@@ -345,39 +345,39 @@ Then
 	For([recursiven],0,2
 		1+int(.125(I+[recursiven]->A
 		8fPart(.125(I+[recursiven]->B
-		.000000000001iPart(1000fPart(10|E8imag(|LRAM(A
+		|E~12iPart(1000fPart(|E9imag(L1(A
 		If B=6
-		.000000001iPart(1000fPart(10|E5imag(|LRAM(A
+		|E~9iPart(1000fPart(|E6imag(L1(A
 		If B=5
-		.001fPart(.001iPart(10|E5imag(|LRAM(A
+		.001fPart(.001iPart(|E6imag(L1(A
 		If B=4
-		.001iPart(1000imag(|LRAM(A
+		.001iPart(1000imag(L1(A
 		If B=3
-		.000000000001iPart(1000fPart(10|E8real(|LRAM(A
+		|E~12iPart(1000fPart(|E9real(L1(A
 		If B=2
-		.000000001iPart(1000fPart(10|E5real(|LRAM(A
+		|E~9iPart(1000fPart(|E6real(L1(A
 		If B=1
-		.001fPart(.001iPart(10|E5real(|LRAM(A
+		.001fPart(.001iPart(|E6real(L1(A
 		If not(B
-		.001iPart(1000real(|LRAM(A
+		.001iPart(1000real(L1(A
 		Ans->Z
 		4fPart(.25B->E
-		10fPart(.1|LREG(1+16fPart(C/16
+		10fPart(.1L2(1+16fPart(C/16
 		If [recursiven]=1
-		10fPart(.1int(.1|LREG(1+16fPart(C/16
+		10fPart(.1int(.1L2(1+16fPart(C/16
 		If not([recursiven]
-		int(.01|LREG(1+16fPart(C/16
+		int(sub(L2(1+16fPart(C/16
 		If not(E
 		.001Ans
 		If E=1
-		.000001Ans
+		Ans|E~6
 		If E=2
-		.000000001Ans
+		Ans|E~9
 		If E=3
-		.000000000001Ans
+		Ans|E~12
 		If B>3
 		[i]Ans
-		Ans-Z+|LRAM(A->|LRAM(A
+		Ans-Z+L1(A->L1(A
 	End
 	Return
 End
@@ -386,40 +386,40 @@ Then
 	For([recursiven],0,16fPart(C/16
 		1+int(.125(I+[recursiven]->A
 		8fPart(.125(I+[recursiven]->B
-		.000000000001iPart(1000fPart(10|E8imag(|LRAM(A
+		|E~12iPart(1000fPart(|E9imag(L1(A
 		If B=6
-		.000000001iPart(1000fPart(10|E5imag(|LRAM(A
+		|E~9iPart(1000fPart(|E9imag(L1(A
 		If B=5
-		.001fPart(.001iPart(10|E5imag(|LRAM(A
+		.001fPart(.001iPart(|E6imag(L1(A
 		If B=4
-		.001iPart(1000imag(|LRAM(A
+		.001iPart(1000imag(L1(A
 		If B=3
-		.000000000001iPart(1000fPart(10|E8real(|LRAM(A
+		|E~12iPart(1000fPart(|E9real(L1(A
 		If B=2
-		.000000001iPart(1000fPart(10|E5real(|LRAM(A
+		|E~9iPart(1000fPart(|E6real(L1(A
 		If B=1
-		.001fPart(.001iPart(10|E5real(|LRAM(A
+		.001fPart(.001iPart(|E6real(L1(A
 		If not(B
-		.001iPart(1000real(|LRAM(A
+		.001iPart(1000real(L1(A
 		Ans->Z
 		4fPart(.25B->E
 		If D=85
 		Then
-			|LREG([recursiven]+1
+			L2([recursiven]+1
 			If not(E
 			.001Ans
 			If E=1
-			.000001Ans
+			Ans|E~6
 			If E=2
-			.000000001Ans
+			Ans|E~9
 			If E=3
-			.000000000001Ans
+			Ans|E~12
 			If B>3
 			[i]Ans
-			Ans-Z+|LRAM(A->|LRAM(A
+			Ans-Z+L1(A->L1(A
 		End
 		If D=101
-		Z(10^(E3+3->|LREG([recursiven]+1
+		Z(10^(E3+3->L2([recursiven]+1
 		If J
 		I+[recursiven]+1->I
 	End
@@ -428,13 +428,13 @@ End
 If D=117
 Then
 	For([recursiven],0,16fPart(C/16
-		|LRPL([recursiven]+1->|LREG([recursiven]+1
+		|LRPL([recursiven]+1->L2([recursiven]+1
 	End
 	Return
 End
 If D=133
 Then
 	For([recursiven],0,16fPart(C/16
-		|LREG([recursiven]+1->|LRPL([recursiven]+1
+		L2([recursiven]+1->|LRPL([recursiven]+1
 	End
 End
