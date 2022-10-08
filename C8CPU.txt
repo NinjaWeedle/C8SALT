@@ -137,7 +137,7 @@ Then
 		If not(E
 		B+256->B
 		256fPart(B/256->L2(1+16fPart(C/16
-		E->L2(16
+		E->|LREG(16
 		Return
 	End
 	If A=14
@@ -164,7 +164,7 @@ Then
 End
 If C<192
 Then
-	D+4096fPart(C/16)+L21->P
+	D+4096fPart(C/16)+L2(1->P
 	Return
 End
 If C<208
@@ -366,15 +366,9 @@ Then
 		If [recursiven]=1
 		10fPart(.1int(.1L2(1+16fPart(C/16
 		If not([recursiven]
-		int(sub(L2(1+16fPart(C/16
-		If not(E
-		.001Ans
-		If E=1
-		Ans|E~6
-		If E=2
-		Ans|E~9
-		If E=3
-		Ans|E~12
+		int(.01L2(1+16fPart(C/16
+		
+		Ans10^(~3(E+1
 		If B>3
 		[i]Ans
 		Ans-Z+L1(A->L1(A
@@ -388,7 +382,7 @@ Then
 		8fPart(.125(I+[recursiven]->B
 		|E~12iPart(1000fPart(|E9imag(L1(A
 		If B=6
-		|E~9iPart(1000fPart(|E9imag(L1(A
+		|E~9iPart(1000fPart(|E6imag(L1(A
 		If B=5
 		.001fPart(.001iPart(|E6imag(L1(A
 		If B=4
@@ -405,15 +399,7 @@ Then
 		4fPart(.25B->E
 		If D=85
 		Then
-			L2([recursiven]+1
-			If not(E
-			.001Ans
-			If E=1
-			Ans|E~6
-			If E=2
-			Ans|E~9
-			If E=3
-			Ans|E~12
+			L2([recursiven]+1)10^(~3(E+1
 			If B>3
 			[i]Ans
 			Ans-Z+L1(A->L1(A
