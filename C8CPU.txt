@@ -137,7 +137,7 @@ Then
 		If not(E
 		B+256->B
 		256fPart(B/256->L2(1+16fPart(C/16
-		E->|LREG(16
+		E->L2(16
 		Return
 	End
 	If A=14
