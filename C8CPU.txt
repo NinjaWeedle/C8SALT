@@ -77,27 +77,27 @@ Then
 	0->F
 	If A=1
 	Then
-		For(B,0,8
-			round(e^(Bln(2)),0->E
-			F+E(0<((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
+		For([recursiven],0,8
+			round(e^([recursiven]ln(2)),0
+			F+Ans(0<((2fPart(int(G/Ans)/2))+2fPart(.5int(H/Ans->F
 		End
 		F->L2(1+16fPart(C/16
 		Return
 	End
 	If A=2
 	Then
-		For(B,0,8
-			round(e^(Bln(2)),0->E
-			F+E(1<((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
+		For([recursiven],0,8
+			round(e^([recursiven]ln(2)),0
+			F+Ans(1<((2fPart(int(G/Ans)/2))+2fPart(.5int(H/Ans->F
 		End
 		F->L2(1+16fPart(C/16
 		Return
 	End
 	If A=3
 	Then
-		For(B,0,8
-			round(e^(Bln(2)),0->E
-			F+E(2fPart(.5((2fPart(int(G/E)/2))+2fPart(.5int(H/E->F
+		For([recursiven],0,8
+			round(e^([recursiven]ln(2)),0
+			F+Ans(2fPart(.5((2fPart(int(G/Ans)/2))+2fPart(.5int(H/Ans->F
 		End
 		F->L2(1+16fPart(C/16
 		Return
@@ -180,7 +180,7 @@ Then
 End
 If C<224
 Then
-	0->[recursiven]
+	0->N
 	L2(1+(int(D/16->H
 	If I<420 and not(theta
 	Then
@@ -208,11 +208,11 @@ Then
 			1000fPart(.001iPart(|E6real(L1(A->R
 			If not(B
 			iPart(1000real(L1(A->R
-			For(N,1,8
+			For([recursiven],1,8
 				If R>127
 				Then
 					If pxl-Test(1+LfPart(H/L),1+WfPart(G/W
-					1->[recursiven]
+					1->N
 					Pxl-Change(1+LfPart(H/L),1+WfPart(G/W
 				End
 				256fPart((2R)/256->R
@@ -222,7 +222,7 @@ Then
 			E+1->E
 		End
 	End
-	[recursiven]->L2(16
+	N->L2(16
 	Return
 End
 If C<240
@@ -367,7 +367,6 @@ Then
 		10fPart(.1int(.1L2(1+16fPart(C/16
 		If not([recursiven]
 		int(.01L2(1+16fPart(C/16
-		
 		Ans10^(~3(E+1
 		If B>3
 		[i]Ans
@@ -406,9 +405,9 @@ Then
 		End
 		If D=101
 		Z(10^(E3+3->L2([recursiven]+1
-		If J
-		I+[recursiven]+1->I
 	End
+	If J
+	I+[recursiven]+1->I
 	Return
 End
 If D=117

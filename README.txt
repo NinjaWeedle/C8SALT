@@ -6,11 +6,11 @@ CCC  8 8  SSS  A        T_T
 C8SALT - A CHIP-8 emulator written in TI-BASIC for the TI-83+, TI-84+, TI-84+ C Silver Edition, and TI-84+ CE.
 By Oxiti8
 
-VERSION V1.0
+VERSION V1.1
 
-C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games (as well as some SCHIP games) at a blistering 0.1 FPS!
+C8SALT is the first ever TI-BASIC CHIP-8 emulator. Play all your favorite CHIP-8 games (as well as some SCHIP games) at a blistering 0.2 FPS!
 9 programs are included with C8SALT, along with a ROM converter written in Python 3 allowing you to use your own CHIP-8 games with C8SALT.
-You can even import your own custom fonts!
+You can even import your own custom fonts! V1.1 makes optimizations and fixes a bug with VIP style Load/Save.
 
 *TABLE OF CONTENTS*
 
@@ -122,6 +122,7 @@ J = Increment I during FX55/65 flag
 K = getkey
 L = Screen height
 M = Shift Quirk Flag
+N = Temp
 Q = Delay Timer
 R = Return value
 S = Sound timer 
@@ -135,7 +136,7 @@ VI. CREDITS
 Programmed by Oxiti8.
 Rom importer created by A-KouZ1, modified by Oxiti8.
 
-Special thanks to Mr Womp Womp, kg583, and calc84maniac, and fghsgh for help with memory compression and optimization. C8SALT wouldn't exist without them.
+Special thanks to Mr Womp Womp, kg583, and calc84maniac, LogicalJoe, and fghsgh for help with memory compression and optimization. C8SALT wouldn't exist without them.
 
 VII. LICENSE
 

@@ -40,7 +40,7 @@ For([recursiven],1,dim(|LROM),2
 End
 Archive |LROM
 16->dim(L2
-16->dim(|LRPL
+Ans->dim(|LRPL
 DelVar IDelVar BDelVar SDelVar QOutput(5,2,"ALL SYSTEMS GO
 1->dim(|LSTK
 ClrDraw
@@ -49,43 +49,43 @@ Xmin+|E2DeltaX>Xmax
 Text(~1,56(2-Ans),60(2-Ans),"C8SALT
 Repeat getKey=22
 	L1(1+int(P/8->A
-	8fPart(P/8->B
-	If B=7
+	8fPart(P/8->[recursiven]
+	If [recursiven]=7
 	Then
 		iPart(1000fPart(|E9imag(A->C
 		iPart(1000real(L1(2+int(P/8->D
 	End
-	If B=6
+	If [recursiven]=6
 	Then
 		iPart(1000fPart(|E6imag(A->C
 		iPart(1000fPart(|E9imag(A->D
 	End
-	If B=5
+	If [recursiven]=5
 	Then
 		1000fPart(.001iPart(|E6imag(A->C
 		iPart(1000fPart(|E6imag(A->D
 	End
-	If B=4
+	If [recursiven]=4
 	Then
 		iPart(1000imag(A->C
 		1000fPart(.001iPart(|E6imag(A->D
 	End
-	If B=1
+	If [recursiven]=1
 	Then
 		1000fPart(.001iPart(|E6real(A->C
 		iPart(1000fPart(|E6real(A->D
 	End
-	If B=2
+	If [recursiven]=2
 	Then
 		iPart(1000fPart(|E6real(A->C
 		iPart(1000fPart(|E9real(A->D
 	End
-	If B=3
+	If [recursiven]=3
 	Then
 		iPart(1000fPart(|E9real(A->C
 		iPart(1000imag(A->D
 	End
-	If not(B
+	If not([recursiven]
 	Then
 		iPart(1000real(A->C
 		1000fPart(.001iPart(|E6real(A->D
