@@ -173,7 +173,7 @@ Then
 	randInt(0,255->R
 	For([recursiven],0,8
 		round(e^([recursiven]ln(2)),0
-		B+(1<2fPart(.5int(D/Ans))+2fPart(.5int(R/Ans->B
+		B+Ans(1<2fPart(.5int(D/Ans))+2fPart(.5int(R/Ans->B
 	End
 	B->L2(1+16fPart(C/16
 	Return
