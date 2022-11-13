@@ -69,19 +69,22 @@ Then
 End
 If C<144
 Then
-	16fPart(D/16->A
 	L2(1+int(D/16->H
-	L2(1+16fPart(C/16->G
-	If not(A
-	H->L2(1+16fPart(C/16
+	16fPart(D/16->A
+	If not(Ans
+	Then
+		H->L2(1+16fPart(C/16
+		Return
+	End
 	0->F
+	L2(1+16fPart(C/16->G
 	If A=1
 	Then
 		For([recursiven],0,8
 			round(e^([recursiven]ln(2)),0
 			F+Ans(0<((2fPart(int(G/Ans)/2))+2fPart(.5int(H/Ans->F
 		End
-		F->L2(1+16fPart(C/16
+		Ans->L2(1+16fPart(C/16
 		Return
 	End
 	If A=2
@@ -90,7 +93,7 @@ Then
 			round(e^([recursiven]ln(2)),0
 			F+Ans(1<((2fPart(int(G/Ans)/2))+2fPart(.5int(H/Ans->F
 		End
-		F->L2(1+16fPart(C/16
+		Ans->L2(1+16fPart(C/16
 		Return
 	End
 	If A=3
@@ -99,22 +102,21 @@ Then
 			round(e^([recursiven]ln(2)),0
 			F+Ans(2fPart(.5((2fPart(int(G/Ans)/2))+2fPart(.5int(H/Ans->F
 		End
-		F->L2(1+16fPart(C/16
+		Ans->L2(1+16fPart(C/16
 		Return
 	End
 	If A=4
 	Then
-		H+G->B
+		H+Ans->B
 		B>255->L2(16
 		256fPart(B/256->L2(1+16fPart(C/16
 		Return
 	End
 	If A=5
 	Then
-		G-H->B
+		Ans-H->B
 		B>=0->E
-		If not(E
-		B+256->B
+		B+256not(Ans->B
 		256fPart(B/256->L2(1+16fPart(C/16
 		E->L2(16
 		Return
@@ -122,20 +124,16 @@ Then
 	If A=6
 	Then
 		If M
-		Then
-			int(.5H->L2(1+16fPart(C/16
-		Else
-			int(.5G->L2(1+16fPart(C/16
-		End
+		H->G
+		int(.5Ans->L2(1+16fPart(C/16
 		2fPart(.5G->L2(16
 		Return
 	End
 	If A=7
 	Then
-		H-G->B
-		B>=0->E
-		If not(E
-		B+256->B
+		H-Ans->B
+		Ans>=0->E
+		B+256not(Ans->B
 		256fPart(B/256->L2(1+16fPart(C/16
 		E->L2(16
 		Return
@@ -143,11 +141,8 @@ Then
 	If A=14
 	Then
 		If M
-		Then
-			256fPart(2H/256->L2(1+16fPart(C/16
-		Else
-			256fPart(2G/256->L2(1+16fPart(C/16
-		End
+		H->G
+		256fPart(2Ans/256->L2(1+16fPart(C/16
 		128<=G->L2(16
 	End
 	Return
@@ -157,25 +152,24 @@ Then
 	P+2(L2(1+(16fPart(C/16)))!=L2(1+(int(D/16->P
 	Return
 End
-If C<176
-Then
-	D+4096fPart(C/16->I
-	Return
-End
-If C<192
-Then
-	D+4096fPart(C/16)+L2(1->P
-	Return
-End
 If C<208
 Then
-	0->B
-	randInt(0,255->R
+	If C<176
+	Then
+		D+4096fPart(C/16->I
+		Return
+	End
+	If C<192
+	Then
+		D+4096fPart(C/16)+L2(1->P
+		Return
+	End
+	DelVar BrandInt(0,255->R
 	For([recursiven],0,8
 		round(e^([recursiven]ln(2)),0
 		B+Ans(1<2fPart(.5int(D/Ans))+2fPart(.5int(R/Ans->B
 	End
-	B->L2(1+16fPart(C/16
+	Ans->L2(1+16fPart(C/16
 	Return
 End
 If C<224
@@ -193,21 +187,22 @@ Then
 			1+int(E/8->A
 			8fPart(E/8->B
 			If B=7
-			iPart(1000fPart(|E9imag(L1(A->R
+			iPart(1000fPart(|E9imag(L1(A
 			If B=6
-			iPart(1000fPart(|E6imag(L1(A->R
+			iPart(1000fPart(|E6imag(L1(A
 			If B=5
-			1000fPart(.001iPart(|E6imag(L1(A->R
+			1000fPart(.001iPart(|E6imag(L1(A
 			If B=4
-			iPart(1000imag(L1(A->R
+			iPart(1000imag(L1(A
 			If B=3
-			iPart(1000fPart(|E9real(L1(A->R
+			iPart(1000fPart(|E9real(L1(A
 			If B=2
-			iPart(1000fPart(|E6real(L1(A->R
+			iPart(1000fPart(|E6real(L1(A
 			If B=1
-			1000fPart(.001iPart(|E6real(L1(A->R
+			1000fPart(.001iPart(|E6real(L1(A
 			If not(B
-			iPart(1000real(L1(A->R
+			iPart(1000real(L1(A
+			Ans->R
 			For([recursiven],1,8
 				If R>127
 				Then
